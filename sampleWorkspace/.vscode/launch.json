@@ -7,28 +7,18 @@
 		{
 			"type": "dockerfile",
 			"request": "launch",
-			"name": "Debug Dockerfile",
+			"name": "Dockerfile: Build",
 			"contextPath": "${workspaceFolder}",
-			"dockerfile": "Dockerfile",
-			//"stopOnEntry": true,
+			"dockerfile": "Dockerfile"
 		},
-		// {
-		// 	"type": "dockerfile",
-		// 	"request": "launch",
-		// 	"name": "Debug Dockerfile Without Stop On Entry",
-		// 	"contextPath": "${workspaceFolder}",
-		// 	"dockerfile": "Dockerfile",
-		// 	//"stopOnEntry": false,
-		// },
 		{
 			"type": "dockerfile",
 			"request": "launch",
-			"name": "Debug Dockerfile With Options",
+			"name": "Dockerfile: Build with Arguments",
 			"contextPath": "${workspaceFolder}",
 			"dockerfile": "Dockerfile",
-			//"stopOnEntry": true,
-			//"build-args": [ "FOO=bar", "AAA=bbbbb" ],
 			"target": "build2",
-		},
+			"args": [ "--build-arg=FOO=bar", "--build-arg=AAA=bbbbb" ]
+		}
 	]
 }

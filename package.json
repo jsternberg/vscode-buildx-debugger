@@ -63,8 +63,8 @@
         "commands": [
             {
                 "command": "extension.vscode-buildx-debugger.debugEditorContents",
-                "title": "Debug File",
-                "category": "Dockerfile Debug",
+                "title": "Debug",
+                "category": "Dockerfile",
                 "enablement": "!inDebugMode",
                 "icon": "$(debug-alt)"
             }
@@ -80,24 +80,28 @@
                 "languages": [
                     "dockerfile"
                 ],
-                "label": "Dockerfile Debug",
+                "label": "Dockerfile: Build",
                 "configurationAttributes": {
                     "launch": {
                         "required": [],
                         "properties": {
                             "dockerfile": {
                                 "type": "string",
-                                "description": "Absolute path to a text file.",
+                                "description": "Relative path from the context path to the dockerfile.",
                                 "default": "Dockerfile"
                             },
                             "contextPath": {
                                 "type": "string",
-                                "description": "Path to the default context",
+                                "description": "Path to the default context.",
                                 "default": "${workspaceFolder}"
                             },
                             "target": {
                                 "type": "string",
                                 "description": "Target build stage to build."
+                            },
+                            "args": {
+                                "type": "array",
+                                "description": "Arguments to pass to the build."
                             }
                         }
                     }
@@ -106,26 +110,26 @@
                     {
                         "type": "dockerfile",
                         "request": "launch",
-                        "name": "Build Dockerfile",
+                        "name": "Dockerfile: Build",
                         "dockerfile": "Dockerfile",
                         "contextPath": "${workspaceFolder}"
                     }
                 ],
                 "configurationSnippets": [
                     {
-                        "label": "Dockerfile Debug: Launch",
+                        "label": "Dockerfile: Build",
                         "description": "A new configuration for 'debugging' a user selected Dockerfile.",
                         "body": {
                             "type": "dockerfile",
                             "request": "launch",
-                            "name": "Build Dockerfile",
-                            "dockerfile": "${command:AskForProgramName}",
+                            "name": "Dockerfile: Build",
+                            "dockerfile": "${command:AskForDockerfilePath}",
                             "contextPath": "${workspaceFolder}"
                         }
                     }
                 ],
                 "variables": {
-                    "AskForProgramName": "extension.vscode-buildx-debugger.getProgramName"
+                    "AskForDockerfilePath": "extension.vscode-buildx-debugger.getDockerfilePath"
                 }
             }
         ]
